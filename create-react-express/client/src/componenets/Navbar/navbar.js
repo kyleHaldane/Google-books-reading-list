@@ -1,8 +1,38 @@
-import React from "react";
-export default function navbar(){
-    return(
-        <div>
-            <h1>I AM A NAVBAR</h1>
-        </div>
-    )
+import React, { useState } from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText
+} from 'reactstrap';
+
+const Example = (props) => {
+
+
+  return (
+    <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">google books</NavbarBrand>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/search">search</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/saved">saved</NavLink>
+            </NavItem>
+          </Nav>
+          <NavbarText>Simple Text</NavbarText>
+      </Navbar>
+    </div>
+  );
 }
+
+export default Example;

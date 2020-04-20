@@ -8,6 +8,7 @@ import {
 import Saved from "./pages/Saved";
 import Search from "./pages/Search";
 import Navbar from "./componenets/Navbar";
+import Header from "./componenets/Header";
 
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
     <Router>
       <div>
         <Navbar />
+        <Header />
           <Switch>
             <Route exact path={["/", "/search"]}>
               <Search />
