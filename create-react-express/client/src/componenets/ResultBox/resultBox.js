@@ -6,7 +6,13 @@ export default function resultBox(props){
         <div>
           <a>Results</a>
           <hr />
-          <ResultCard />
+          <div>
+            {props.books.length ? (
+              props.books.map(book => <ResultCard book ={book} />))
+             : <h3>No Results to Display</h3>
+             }
+          </div>
+
         </div>
     )
 }

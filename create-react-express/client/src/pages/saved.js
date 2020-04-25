@@ -7,7 +7,6 @@ export default function saved(props){
           <a>on saved page</a>
           <Container className="block-example border border-dark">
             <h5>Saved Books</h5>
-            <SavedBox />
           </Container>
         </div>
     )

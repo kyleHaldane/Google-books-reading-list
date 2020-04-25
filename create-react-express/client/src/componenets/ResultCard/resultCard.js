@@ -1,25 +1,38 @@
 import React from "react";
-import { Container, Row, Col, Button,
-    Card, CardImg, CardText, CardBody, CardLink,
-    CardTitle, CardSubtitle} from 'reactstrap';
+import {
+  Container, Row, Col, Button,
+  Card, CardImg, CardText, CardBody, CardLink,
+  CardTitle, CardSubtitle
+} from 'reactstrap';
+import API from "../../utils/API";
 
-export default function resultCard(props){
-    return(
-        <div>
+function save(entry){
+  API.saveBook(entry)
+}
+
+export default function resultCard(props) {
+  // console.log(props.book.volumeInfo.imageLinks["thumbnail"]);
+  return (
+  <div>
     <Container>
-      <Card>
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-        </CardBody>
-        <img width="100%" src="/assets/318x180.svg" alt="Card image cap" />
-        <CardBody>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button outline color="secondary">view</Button>{' '}
-          <Button outline color="secondary">submit</Button>{' '}
-        </CardBody>
-      </Card>
+    <Card>
+      <CardBody >
+      <CardTitle>{props.book.volumeInfo.title}</CardTitle>
+      <CardSubtitle>{props.book.volumeInfo.authors.map( author => author+" ")}</CardSubtitle>
+      </CardBody>
+      <img width="15%" src={props.book.volumeInfo.imageLinks === undefined
+        ? ""
+        : `${props.book.volumeInfo.imageLinks.thumbnail}`} alt="Card image cap" />
+      <CardBody>
+      <CardText>{props.book.volumeInfo.description}</CardText>
+      <Button outline color="secondary">view</Button>{' '}
+      <Button 
+        outline color="secondary"
+        onClick={save}
+        >save</Button>{' '}
+      </CardBody>
+    </Card>
     </Container>
-        </div>
-    )
+  </div>
+  )
 }
