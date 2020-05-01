@@ -6,5 +6,18 @@ module.exports = {
         .create(req.body)
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
-    }
-}
+    },
+    findAll: function(req, res){
+      db.book
+      .find({})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    },
+    deleteById: function(req, res){
+      db.book
+      .findById({ _id: req.params.id })
+      .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
+}   

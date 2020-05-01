@@ -7,3 +7,5 @@ router.route("/")
 
 router.route("/:id")
   .delete(bookController.deleteById)
+
+  module.exports = router;

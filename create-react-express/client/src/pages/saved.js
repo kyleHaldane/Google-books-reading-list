@@ -1,12 +1,27 @@
-import React from "react";
-import SavedBox from "../componenets/SavedBox";
+import React, { useState, useEffect} from "react";
+import ResultBox from "../componenets/ResultBox";
 import { Container, Row, Col} from "reactstrap";
-export default function saved(props){
+import API from "../utils/API";
+export default function saved(){
+
+  const [savedBooks, setSavedBooks] = useState({});
+  
+  function loadBooks(){
+    API.getBooks()
+      .then(res => setSavedBooks(res.data))
+      .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    loadBooks()
+  }, [])
+
     return(
         <div>
           <a>on saved page</a>
           <Container className="block-example border border-dark">
             <h5>Saved Books</h5>
+            <ResultBox books={savedBooks}/>
           </Container>
         </div>
     )
