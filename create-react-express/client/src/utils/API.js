@@ -10,7 +10,7 @@ export default {
         return(axios.post("api/books", bookData))
     },
     deleteBook: function(id){
-        return axios.get("/api/books/" +id)
+        return axios.delete("/api/books/" +id)
     },
     searchBook: function(query){
         return axios.get(URL+query+"&key="+APIkey);

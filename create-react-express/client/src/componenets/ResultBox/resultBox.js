@@ -1,6 +1,10 @@
 import ResultCard from "../ResultCard";
 import React from "react";
 
+function cardAndButtons(data){
+  
+}
+
 export default function resultBox(props){
     return(
         <div>

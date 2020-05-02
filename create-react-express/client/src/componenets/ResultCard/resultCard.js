@@ -11,6 +11,7 @@ export default function resultCard(props) {
   let data;
 
   function databaseOrApi(props) {
+    //checks if the data comes from google books api
     if (props.book.volumeInfo != undefined) {
       data = {
         title: props.book.volumeInfo.title,
@@ -21,16 +22,18 @@ export default function resultCard(props) {
           : `${props.book.volumeInfo.imageLinks.thumbnail}`
       }
     }
+    //defaults to coming from database if not from google books api
     else
       data = {
         title: props.book.title,
         authors: props.book.authors,
         description: props.book.description,
-        image: props.book.image
+        image: props.book.image,
+        id: props.book._id
       }
     return data;
   }
-
+  //Reassignes the data from props
   data = databaseOrApi(props);
 
   function save(event) {
@@ -45,7 +48,10 @@ export default function resultCard(props) {
     })
   }
 
-  console.log(typeof (data.authors));
+  function remove(item){
+    API.deleteBook(item)
+    console.log(data)
+  }
 
   return (
     <div>
@@ -55,16 +61,13 @@ export default function resultCard(props) {
             <CardTitle>{data.title}</CardTitle>
             <CardSubtitle>{data.authors.map(author => author + " ")}</CardSubtitle>
           </CardBody>
-          {/* <img width="15%" src={props.book.volumeInfo.imageLinks === undefined
-            ? ""
-            : `${props.book.volumeInfo.imageLinks.thumbnail}`} alt="Card image cap" /> */}
+          <img width="15%" src={`${data.image}`} alt="Card image cap" />
           <CardBody>
             <CardText>{data.description}</CardText>
-            <Button outline color="secondary">view</Button>{' '}
-            <Button
-              outline color="secondary"
-              onClick={save}
-            >save</Button>{' '}
+            {props.book.volumeInfo != undefined ?
+            <Button outline color="secondary" onClick={save}>save</Button> :
+            <Button outline color="secondary" onClick={() => remove(data.id)}>delete</Button>}
+            <Button outline color="secondary">view</Button>
           </CardBody>
         </Card>
       </Container>
