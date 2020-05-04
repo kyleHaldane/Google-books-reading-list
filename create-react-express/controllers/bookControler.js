@@ -9,7 +9,7 @@ module.exports = {
     },
     findAll: function(req, res){
       db.book
-      .find({})
+      .find(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
     },
@@ -19,5 +19,11 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+    },
+    findOne: function(req, res){
+      db.book
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    }
 }   

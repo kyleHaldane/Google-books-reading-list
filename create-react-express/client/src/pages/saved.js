@@ -11,10 +11,7 @@ export default function saved(){
       .then(res => setSavedBooks(res.data))
       .catch(err => console.log(err));
   };
-
-  useEffect(() => {
-    loadBooks()
-  }, [])
+  loadBooks()
 
     return(
         <div>

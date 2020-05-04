@@ -29,7 +29,7 @@ const Example = (props) => {
               <NavLink href="/saved">saved</NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <NavbarText>:D</NavbarText>
       </Navbar>
     </div>
   );

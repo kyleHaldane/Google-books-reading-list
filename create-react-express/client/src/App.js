@@ -3,10 +3,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Saved from "./pages/Saved";
 import Search from "./pages/Search";
+import Detail from "./pages/Detail";
 import Navbar from "./componenets/Navbar";
 import Header from "./componenets/Header";
 
@@ -23,6 +23,9 @@ export default function App() {
             </Route>
             <Route path="/saved">
               <Saved />
+            </Route>
+            <Route path="/detail/:id">
+              <Detail />
             </Route>
           </Switch>
       </div>

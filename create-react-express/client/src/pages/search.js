@@ -30,7 +30,6 @@ export default function search(){
 
   return(
   <div>
-    <a>on search page</a>
     <SearchBox
       handleInputChange={handleInputChange}
       handleSearchSubmit={handleSearchSubmit}

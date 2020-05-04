@@ -3,6 +3,9 @@ const URL = "https://www.googleapis.com/books/v1/volumes?q="
 const APIkey = "AIzaSyDDObDojjIwY2Ei259fSOmLvBsaIhChgJE"
 export default {
     //get all books
+    getBook: function(id){
+        return axios.get("/api/books/"+id);
+    },
     getBooks: function(){
         return axios.get("/api/books");
     },

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   Container, Row, Col, Button,
   Card, CardImg, CardText, CardBody, CardLink,
-  CardTitle, CardSubtitle
+  CardTitle, CardSubtitle, Media
 } from 'reactstrap';
 import API from "../../utils/API";
 
@@ -48,8 +49,9 @@ export default function resultCard(props) {
     })
   }
 
-  function remove(item){
-    API.deleteBook(item)
+  const remove = (event) => {
+    event.preventDefault();
+    API.deleteBook(data.id);
     console.log(data)
   }
 
@@ -61,13 +63,15 @@ export default function resultCard(props) {
             <CardTitle>{data.title}</CardTitle>
             <CardSubtitle>{data.authors.map(author => author + " ")}</CardSubtitle>
           </CardBody>
-          <img width="15%" src={`${data.image}`} alt="Card image cap" />
+          <Media width="30%" src={`${data.image}`} alt="Card image cap" />
           <CardBody>
             <CardText>{data.description}</CardText>
             {props.book.volumeInfo != undefined ?
             <Button outline color="secondary" onClick={save}>save</Button> :
-            <Button outline color="secondary" onClick={() => remove(data.id)}>delete</Button>}
-            <Button outline color="secondary">view</Button>
+            <Button outline color="secondary" onClick={remove}>delete</Button>}
+            <Link to={"/detail/" + data.id}>
+              {` `}<Button outline color="secondary">view</Button>
+            </Link>
           </CardBody>
         </Card>
       </Container>
